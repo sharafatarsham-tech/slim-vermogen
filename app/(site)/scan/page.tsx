@@ -61,25 +61,39 @@ export default function ScanPage() {
     return { fv, taxRate, taxSavedPerMonth };
   }, [a.monthly, a.taxBracket, yearsToGo]);
 
-  async function submitLead() {
+  async function submitLead(): Promise<void> {
     const endpoint = "https://formspree.io/f/mbdrdqvp";
+
+    const email = (a.email ?? "").trim();
+    const name = (a.name ?? "").trim();
+
+    // Validatie: Formspree vereist een geldig e-mailadres
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      alert("Vul een geldig e-mailadres in.");
+      return;
+    }
+    if (!name || name.length < 2) {
+      alert("Vul je naam in.");
+      return;
+    }
 
     const payload = {
       source: "SlimVermogenScan",
-      name: a.name,
-      email: a.email,
+      name,
+      email,
       age: a.age,
       income: a.income,
       monthly: a.monthly,
       years: a.years,
       hasPension: a.hasPension,
       taxBracket: a.taxBracket,
-      estimatedEndCapital: projection.fv,
-      estimatedTaxSavedPerMonth: projection.taxSavedPerMonth,
+      estimatedEndCapital: Math.round(projection.fv),
+      estimatedTaxSavedPerMonth: Math.round(projection.taxSavedPerMonth),
       createdAt: new Date().toISOString(),
     };
 
     let res: Response;
+
     try {
       res = await fetch(endpoint, {
         method: "POST",
@@ -90,23 +104,19 @@ export default function ScanPage() {
         body: JSON.stringify(payload),
       });
     } catch (err) {
-      throw new Error(
-        `Netwerkfout bij verzenden (endpoint/verbinding). Details: ${String(err)}`
-      );
+      console.error("Netwerkfout bij verzenden:", err);
+      alert("Netwerkfout bij verzenden. Probeer opnieuw.");
+      return;
     }
+
+    // Formspree geeft vaak JSON terug (Accept: application/json)
+    const data = await res.json().catch(() => null);
 
     if (!res.ok) {
-      let details = "";
-      try {
-        const data = await res.json();
-        details = JSON.stringify(data);
-      } catch {
-        details = await res.text();
-      }
-      throw new Error(`Formspree error (${res.status}): ${details}`);
+      console.error("Formspree error:", res.status, data, payload);
+      alert("Er ging iets mis met verzenden. Check de console (F12) voor details.");
+      return;
     }
-
-    return true;
   }
 
   const canNext = useMemo(() => {
@@ -124,13 +134,11 @@ export default function ScanPage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-zinc-600">Slim Vermogen</p>
-            <h1 className="mt-1 text-3xl font-bold tracking-tight">
-              Pensioen Scan
-            </h1>
+            <h1 className="mt-1 text-3xl font-bold tracking-tight">Pensioen Scan</h1>
             <p className="mt-2 text-sm leading-6 text-zinc-700">
               Beantwoord een paar vragen. Je krijgt een{" "}
-              <span className="font-medium">indicatie</span> van wat je kunt
-              opbouwen en een eenvoudige uitleg over mogelijk belastingvoordeel.
+              <span className="font-medium">indicatie</span> van wat je kunt opbouwen
+              en een eenvoudige uitleg over mogelijk belastingvoordeel.
             </p>
 
             <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-zinc-500">
@@ -148,19 +156,13 @@ export default function ScanPage() {
 
           <div className="shrink-0">
             <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-600">
-              Stap{" "}
-              <span className="font-medium text-zinc-900">{step}</span>/
-              {TOTAL_STEPS}
+              Stap <span className="font-medium text-zinc-900">{step}</span>/{TOTAL_STEPS}
             </div>
           </div>
         </div>
 
         {/* Progress */}
-        <Progress
-          steps={TOTAL_STEPS}
-          current={step}
-          onJump={(n) => setStep(n)}
-        />
+        <Progress steps={TOTAL_STEPS} current={step} onJump={(n) => setStep(n)} />
 
         {/* Card */}
         <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -223,8 +225,7 @@ export default function ScanPage() {
               </div>
 
               <Hint>
-                Dit is een indicatie. Inleg hangt af van jaarruimte/reserveringsruimte
-                en je situatie.
+                Dit is een indicatie. Inleg hangt af van jaarruimte/reserveringsruimte en je situatie.
               </Hint>
             </Step>
           )}
@@ -312,9 +313,7 @@ export default function ScanPage() {
                   </div>
 
                   <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-                    <p className="text-xs font-semibold text-zinc-900">
-                      Kort uitgelegd
-                    </p>
+                    <p className="text-xs font-semibold text-zinc-900">Kort uitgelegd</p>
                     <p className="mt-2 text-xs leading-5 text-zinc-700">
                       Als je pensioen-inleg fiscaal aftrekbaar is, betaal je nu vaak minder belasting
                       (maar je betaalt later belasting bij uitkeren). Dit hangt o.a. af van{" "}
@@ -361,28 +360,16 @@ export default function ScanPage() {
                 />
                 <Card
                   title="Indicatie belastingvoordeel"
-                  value={
-                    projection.taxRate > 0
-                      ? `${fmt(projection.taxSavedPerMonth)}/maand`
-                      : "Onbekend"
-                  }
-                  sub={
-                    projection.taxRate > 0
-                      ? "Indicatief (geen jaarruimte-check)"
-                      : "Kies Box 1 in stap 5 voor indicatie"
-                  }
+                  value={projection.taxRate > 0 ? `${fmt(projection.taxSavedPerMonth)}/maand` : "Onbekend"}
+                  sub={projection.taxRate > 0 ? "Indicatief (geen jaarruimte-check)" : "Kies Box 1 in stap 5 voor indicatie"}
                 />
               </div>
 
               <div className="mt-6 rounded-xl border border-zinc-200 p-4">
                 <p className="text-sm font-semibold">Wat nu?</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-700">
-                  <li>
-                    Wil je exact weten wat je kan aftrekken (jaarruimte) en wat je slimste route is?
-                  </li>
-                  <li>
-                    Dan plannen we een korte call en maken we het concreet.
-                  </li>
+                  <li>Wil je exact weten wat je kan aftrekken (jaarruimte) en wat je slimste route is?</li>
+                  <li>Dan plannen we een korte call en maken we het concreet.</li>
                 </ul>
               </div>
 
@@ -392,16 +379,10 @@ export default function ScanPage() {
                   disabled={submitting}
                   onClick={async () => {
                     if (submitting) return;
-
                     try {
                       setSubmitting(true);
                       await submitLead();
                       router.push("/bedankt");
-                    } catch (e) {
-                      console.error("SubmitLead error:", e);
-                      alert(
-                        "Er ging iets mis met verzenden. Open de console (F12) voor details."
-                      );
                     } finally {
                       setSubmitting(false);
                     }
@@ -411,9 +392,7 @@ export default function ScanPage() {
                     (submitting ? "cursor-not-allowed opacity-60" : "")
                   }
                 >
-                  {submitting
-                    ? "Verzenden..."
-                    : "Resultaat ontvangen & vrijblijvend gesprek"}
+                  {submitting ? "Verzenden..." : "Resultaat ontvangen & vrijblijvend gesprek"}
                 </button>
 
                 <Link
@@ -439,9 +418,7 @@ export default function ScanPage() {
               disabled={step === 1}
               className={
                 "rounded-xl px-4 py-2 text-sm transition " +
-                (step === 1
-                  ? "text-zinc-400"
-                  : "border border-zinc-300 hover:bg-zinc-50")
+                (step === 1 ? "text-zinc-400" : "border border-zinc-300 hover:bg-zinc-50")
               }
             >
               ← Vorige
@@ -490,10 +467,7 @@ function Progress({
     <div className="mt-6">
       <div className="flex items-center justify-between gap-2">
         <div className="h-2 w-full rounded-full bg-zinc-100">
-          <div
-            className="h-2 rounded-full bg-zinc-900 transition-all"
-            style={{ width: `${pct}%` }}
-          />
+          <div className="h-2 rounded-full bg-zinc-900 transition-all" style={{ width: `${pct}%` }} />
         </div>
         <div className="shrink-0 text-xs text-zinc-500">{Math.round(pct)}%</div>
       </div>
@@ -524,11 +498,7 @@ function Progress({
               >
                 {n}
               </span>
-              <span
-                className={
-                  "text-[11px] " + (active ? "text-zinc-900" : "text-zinc-500")
-                }
-              >
+              <span className={"text-[11px] " + (active ? "text-zinc-900" : "text-zinc-500")}>
                 {n === 1 ? "Start" : n === steps ? "Resultaat" : `Stap ${n}`}
               </span>
             </button>
@@ -626,17 +596,11 @@ function Choice({
       onClick={onClick}
       className={
         "rounded-2xl border p-4 text-left transition hover:bg-zinc-50 " +
-        (active
-          ? "border-zinc-900 bg-zinc-900 text-white hover:opacity-95"
-          : "border-zinc-300")
+        (active ? "border-zinc-900 bg-zinc-900 text-white hover:opacity-95" : "border-zinc-300")
       }
     >
       <div className="text-sm font-semibold">{title}</div>
-      <div
-        className={"mt-1 text-xs " + (active ? "text-white/80" : "text-zinc-600")}
-      >
-        {desc}
-      </div>
+      <div className={"mt-1 text-xs " + (active ? "text-white/80" : "text-zinc-600")}>{desc}</div>
     </button>
   );
 }
@@ -671,17 +635,11 @@ function Segmented<T extends string>({
             onClick={() => onChange(o.value)}
             className={
               "rounded-2xl border p-4 text-left transition " +
-              (active
-                ? "border-zinc-900 bg-zinc-900 text-white"
-                : "border-zinc-300 bg-white hover:bg-zinc-50")
+              (active ? "border-zinc-900 bg-zinc-900 text-white" : "border-zinc-300 bg-white hover:bg-zinc-50")
             }
           >
             <div className="text-sm font-semibold">{o.title}</div>
-            <div
-              className={"mt-1 text-xs " + (active ? "text-white/80" : "text-zinc-600")}
-            >
-              {o.desc}
-            </div>
+            <div className={"mt-1 text-xs " + (active ? "text-white/80" : "text-zinc-600")}>{o.desc}</div>
           </button>
         );
       })}
