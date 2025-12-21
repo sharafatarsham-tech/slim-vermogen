@@ -1,9 +1,5 @@
 import "./globals.css";
-
-export const metadata = {
-  title: "Slim Vermogen",
-  description: "Slim Vermogen Scan",
-};
+import Navbar from "./components/Navbar";
 
 export default function RootLayout({
   children,
@@ -12,7 +8,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl">
-      <body>{children}</body>
+      <body className="bg-white text-zinc-900">
+        <Navbar />
+
+        <main className="mx-auto max-w-5xl px-6 pt-16">
+          {children}
+        </main>
+
+      </body>
     </html>
   );
 }
