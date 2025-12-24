@@ -9,7 +9,7 @@ export default function Brand() {
         width={240}
         height={64}
         priority
-        className="h-18 w-auto"   // zelfde hoogte als “Start scan”
+        className="h-32 w-auto"   // zelfde hoogte als “Start scan”
       />
     </div>
   );

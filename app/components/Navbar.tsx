@@ -3,21 +3,27 @@ import Brand from "./Brand";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur overflow-hidden">
       <div className="mx-auto max-w-6xl px-6">
-      <div className="flex h-24 items-center justify-between">
-          
+        <div className="flex h-24 items-center justify-between overflow-hidden">
+
           {/* LOGO LINKS */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center h-full">
             <Brand />
           </Link>
 
           {/* MENU (DESKTOP) */}
           <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-600">
-            <a href="#hoe-werkt-het" className="transition hover:text-zinc-900">
+            <a
+              href="#hoe-werkt-het"
+              className="transition hover:text-zinc-900"
+            >
               Hoe werkt het?
             </a>
-            <a href="#faq" className="transition hover:text-zinc-900">
+            <a
+              href="#faq"
+              className="transition hover:text-zinc-900"
+            >
               FAQ
             </a>
           </nav>
