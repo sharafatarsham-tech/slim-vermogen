@@ -1,12 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Brand from "./Brand";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur overflow-hidden">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex h-24 items-center justify-between overflow-hidden">
-
           {/* LOGO LINKS */}
           <Link href="/" className="flex items-center h-full">
             <Brand />
@@ -14,18 +19,23 @@ export default function Navbar() {
 
           {/* MENU (DESKTOP) */}
           <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-600">
-            <a
-              href="#hoe-werkt-het"
+            <Link
+              href={onHome ? "#hoe-werkt-het" : "/#hoe-werkt-het"}
               className="transition hover:text-zinc-900"
             >
               Hoe werkt het?
-            </a>
-            <a
-              href="#faq"
+            </Link>
+
+            <Link
+              href={onHome ? "#faq" : "/#faq"}
               className="transition hover:text-zinc-900"
             >
               FAQ
-            </a>
+            </Link>
+
+            <Link href="/kennis" className="transition hover:text-zinc-900">
+              Kennis
+            </Link>
           </nav>
 
           {/* CTA */}
@@ -35,7 +45,6 @@ export default function Navbar() {
           >
             Start scan
           </Link>
-
         </div>
       </div>
     </header>
