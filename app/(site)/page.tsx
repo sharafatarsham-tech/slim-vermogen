@@ -19,9 +19,10 @@ export default function HomePage() {
           </div>
 
           <div className="mx-auto max-w-6xl px-6">
-            <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-2 sm:py-4">
-              <div className="mx-auto max-w-3xl text-center">
-                {/* HERO LOGO */}
+            {/* compacter + hoger */}
+            <div className="min-h-[calc(100vh-8rem)] flex items-start justify-center pt-3 sm:pt-5">
+              <div className="mx-auto w-full max-w-3xl text-center">
+                {/* HERO LOGO (hoger + kleiner) */}
                 <div className="flex justify-center mb-1">
                   <Image
                     src="/logo-mijnpensioen.png"
@@ -29,29 +30,29 @@ export default function HomePage() {
                     width={520}
                     height={180}
                     priority
-                    className="h-auto w-[260px] sm:w-[310px] md:w-[340px]"
+                    className="h-auto w-[200px] sm:w-[230px] md:w-[260px]"
                   />
                 </div>
 
                 {/* badge */}
-                <div className="flex justify-center mt-1">
+                <div className="flex justify-center">
                   <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs text-zinc-700 shadow-sm backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     Binnen 2 minuten inzicht — geen verplichtingen
                   </div>
                 </div>
 
-                <h1 className="mt-3 sm:mt-4 text-balance text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
+                <h1 className="mt-3 text-balance text-[32px] font-semibold tracking-tight text-zinc-900 sm:text-[40px]">
                   Zie in één overzicht wat je pensioen later écht kan worden.
                 </h1>
 
-                <p className="mt-3 sm:mt-4 mx-auto max-w-2xl text-pretty text-base leading-7 text-zinc-600 sm:text-lg">
+                <p className="mt-2 mx-auto max-w-2xl text-pretty text-[15px] leading-6 text-zinc-600 sm:text-[16px]">
                   De Slim Vermogen Scan combineert jouw input tot een duidelijke indicatie:
                   eindkapitaal, belastingvoordeel en wat een slimme maandinleg kan doen. Simpel,
                   helder en zonder adviesdruk.
                 </p>
 
-                <div className="mt-4 sm:mt-5 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
+                <div className="mt-4 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
                   <Link
                     href="/scan"
                     className="inline-flex items-center justify-center rounded-2xl bg-[#2563eb] px-7 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:shadow-xl"
@@ -67,32 +68,32 @@ export default function HomePage() {
                   </a>
                 </div>
 
-                {/* 3 steps */}
-                <div className="mt-4 sm:mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 text-left shadow-sm">
+                {/* 3 steps (compacter) */}
+                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-left shadow-sm">
                     <div className="text-sm font-semibold text-zinc-900">1) Vul je situatie in</div>
-                    <div className="mt-2 text-sm text-zinc-600">
+                    <div className="mt-1.5 text-sm text-zinc-600">
                       Leeftijd, inkomen en gewenste inleg — meer niet.
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 text-left shadow-sm">
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-left shadow-sm">
                     <div className="text-sm font-semibold text-zinc-900">2) Direct een indicatie</div>
-                    <div className="mt-2 text-sm text-zinc-600">
+                    <div className="mt-1.5 text-sm text-zinc-600">
                       Je ziet wat dit kan betekenen voor je eindkapitaal en voordeel.
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 text-left shadow-sm">
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-left shadow-sm">
                     <div className="text-sm font-semibold text-zinc-900">3) Plan vrijblijvend</div>
-                    <div className="mt-2 text-sm text-zinc-600">
+                    <div className="mt-1.5 text-sm text-zinc-600">
                       Wil je door? Dan nemen we het rustig samen door.
                     </div>
                   </div>
                 </div>
 
-                {/* trust row */}
-                <div className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-zinc-500">
+                {/* trust row (kleiner) */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-zinc-500">
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Geen spam</span>
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Geen adviesdruk</span>
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Gratis indicatie</span>

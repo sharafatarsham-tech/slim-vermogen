@@ -10,7 +10,7 @@ export default function RootLayout({
     <html lang="nl">
       <body className="bg-white text-zinc-900">
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );
