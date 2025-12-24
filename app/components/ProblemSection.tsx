@@ -6,6 +6,7 @@ export default function ProblemSection() {
     <section id="probleem" className="border-t border-zinc-200 bg-white py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+
           {/* LEFT */}
           <div className="lg:col-span-7">
             <p className="text-sm font-semibold text-zinc-500">
@@ -26,13 +27,13 @@ export default function ProblemSection() {
             {/* Proof chips */}
             <div className="mt-6 flex flex-wrap gap-2">
               <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
-                Werknemers zonder pensioen: daling ~20% (CBS)
+                11% werknemers zonder pensioenregeling (CBS)
               </span>
               <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
-                Witte vlek (geen regeling) bestaat nog steeds
+                63% zzp’ers: pensioen niet goed geregeld (Knab, 2024)
               </span>
               <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
-                Steeds meer eigen verantwoordelijkheid
+                1 op 3 niet goed voorbereid op pensioen (Centraal Beheer, 2025)
               </span>
             </div>
 
@@ -49,7 +50,7 @@ export default function ProblemSection() {
                 <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
                 <span>
                   <strong>Loondienst zonder regeling</strong> komt vaker voor dan
-                  gedacht (o.a. “witte vlek”).
+                  gedacht (de zogeheten “witte vlek”).
                 </span>
               </li>
               <li className="flex gap-3">
@@ -82,95 +83,75 @@ export default function ProblemSection() {
 
           {/* RIGHT */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6">
-              <p className="text-sm font-semibold text-zinc-900">
-                Wat dit concreet betekent
-              </p>
+            <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 space-y-4">
 
-              <div className="mt-4 space-y-4">
-                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-                  <p className="font-semibold text-zinc-900">
-                    Geen overzicht = verkeerde aannames
-                  </p>
-                  <p className="mt-2 text-sm text-zinc-700">
-                    Zonder overzicht weet je niet hoeveel je echt opbouwt, wat een
-                    slimme inleg doet of welk voordeel je laat liggen.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-                  <p className="font-semibold text-zinc-900">
-                    Doel van dit platform
-                  </p>
-                  <p className="mt-2 text-sm text-zinc-700">
-                    Eerst inzicht. Daarna pas beslissen — zonder druk of
-                    verplichtingen.
-                  </p>
-                </div>
-
-                {/* SOURCES */}
-                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
-                    Bronnen & onderzoek
-                  </p>
-
-                  <ul className="mt-3 space-y-2 text-sm">
-                    <li>
-                      <a
-                        href="https://www.cbs.nl/nl-nl/nieuws/2024/25/aantal-werknemers-zonder-pensioen-afgenomen-met-bijna-20-procent"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
-                      >
-                        CBS — Aantal werknemers zonder pensioen afgenomen (2024)
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="https://www.cbs.nl/nl-nl/maatwerk/2025/48/werknemers-zonder-pensioen-2022-2023"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
-                      >
-                        CBS —     Werknemers zonder pensioen, 2022-2023
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="https://www.dnb.nl/algemeen-nieuws/podcast-2025/miljoenen-mensen-volgend-jaar-in-nieuw-pensioenstelsel/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
-                      >
-                        DNB — Miljoenen mensen volgend jaar in nieuw pensioenstelsel
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="https://www.nibud.nl/onderwerpen/pensioen/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
-                      >
-                        Nibud — Pensioen, inkomen & keuzes
-                      </a>
-                    </li>
-                  </ul>
-
-                  <p className="mt-3 text-xs text-zinc-500">
-                    Gebaseerd op openbare cijfers en analyses van onafhankelijke instanties.
-                  </p>
-                </div>
+              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                <p className="font-semibold text-zinc-900">
+                  Geen overzicht = verkeerde aannames
+                </p>
+                <p className="mt-2 text-sm text-zinc-700">
+                  Zonder overzicht weet je niet hoeveel je echt opbouwt, wat een
+                  slimme inleg doet of welk voordeel je laat liggen.
+                </p>
               </div>
-            </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
-              *Cijfers/onderzoeken kunnen per jaar wijzigen; we updaten dit regelmatig.
-            </p>
+              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                <p className="font-semibold text-zinc-900">
+                  Doel van dit platform
+                </p>
+                <p className="mt-2 text-sm text-zinc-700">
+                  Eerst inzicht. Daarna pas beslissen — zonder druk of
+                  verplichtingen.
+                </p>
+              </div>
+
+              {/* SOURCES */}
+              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                  Bronnen & onderzoek
+                </p>
+
+                <ul className="mt-3 space-y-2 text-sm">
+                  <li>
+                    <a
+                      href="https://www.cbs.nl/nl-nl/nieuws/2024/25/aantal-werknemers-zonder-pensioen-afgenomen-met-bijna-20-procent"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
+                    >
+                      CBS — Aantal werknemers zonder pensioenregeling (11%)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://bieb.knab.nl/ondernemen/twee-op-de-drie-zzpers-vindt-eigen-pensioen-niet-goed-geregeld-spijt-komt-later"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
+                    >
+                      Knab — 63% zzp’ers: pensioen niet goed geregeld (2024)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://nieuws.centraalbeheer.nl/miljoenen-werkende-nederlanders-niet-klaar-voor-later--een-derde-voelt-zich-niet-goed-voorbereid-op-pensioen/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600"
+                    >
+                      Centraal Beheer — 1 op 3 niet voorbereid op pensioen (2025)
+                    </a>
+                  </li>
+                </ul>
+
+                <p className="mt-3 text-xs text-zinc-500">
+                  Gebaseerd op openbare cijfers en onderzoeken van onafhankelijke instanties.
+                </p>
+              </div>
+
+            </div>
           </div>
+
         </div>
       </div>
     </section>
