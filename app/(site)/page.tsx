@@ -17,40 +17,39 @@ export default function HomePage() {
           </div>
 
           <div className="mx-auto max-w-6xl px-6">
-            {/* hoogte = scherm minus navbar (h-16 = 4rem), met kleine padding */}
-            <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-8 sm:py-10">
+            <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-2 sm:py-4">
               <div className="mx-auto max-w-3xl text-center">
                 {/* HERO LOGO */}
-                <div className="flex justify-center mb-3 sm:mb-4">
+                <div className="flex justify-center mb-1">
                   <Image
                     src="/logo-mijnpensioen.png"
                     alt="MijnPensioenGevuld"
                     width={520}
                     height={180}
                     priority
-                    className="h-auto w-[280px] sm:w-[340px] md:w-[380px]"
+                    className="h-auto w-[260px] sm:w-[310px] md:w-[340px]"
                   />
                 </div>
 
                 {/* badge */}
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-1">
                   <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs text-zinc-700 shadow-sm backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     Binnen 2 minuten inzicht — geen verplichtingen
                   </div>
                 </div>
 
-                <h1 className="mt-4 sm:mt-6 text-balance text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
+                <h1 className="mt-3 sm:mt-4 text-balance text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
                   Zie in één overzicht wat je pensioen later écht kan worden.
                 </h1>
 
-                <p className="mt-4 sm:mt-6 mx-auto max-w-2xl text-pretty text-base leading-7 text-zinc-600 sm:text-lg">
-                  De Slim Vermogen Scan combineert jouw input tot een duidelijke indicatie: eindkapitaal,
-                  belastingvoordeel en wat een slimme maandinleg kan doen. Simpel, helder en zonder adviesdruk.
+                <p className="mt-3 sm:mt-4 mx-auto max-w-2xl text-pretty text-base leading-7 text-zinc-600 sm:text-lg">
+                  De Slim Vermogen Scan combineert jouw input tot een duidelijke indicatie:
+                  eindkapitaal, belastingvoordeel en wat een slimme maandinleg kan doen. Simpel,
+                  helder en zonder adviesdruk.
                 </p>
 
-                {/* CTA */}
-                <div className="mt-6 sm:mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+                <div className="mt-4 sm:mt-5 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
                   <Link
                     href="/scan"
                     className="inline-flex items-center justify-center rounded-2xl bg-[#2563eb] px-7 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:shadow-xl"
@@ -67,7 +66,7 @@ export default function HomePage() {
                 </div>
 
                 {/* 3 steps */}
-                <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="mt-4 sm:mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <div className="rounded-2xl border border-zinc-200 bg-white p-5 text-left shadow-sm">
                     <div className="text-sm font-semibold text-zinc-900">1) Vul je situatie in</div>
                     <div className="mt-2 text-sm text-zinc-600">
@@ -91,7 +90,7 @@ export default function HomePage() {
                 </div>
 
                 {/* trust row */}
-                <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-500">
+                <div className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-zinc-500">
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Geen spam</span>
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Geen adviesdruk</span>
                   <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Gratis indicatie</span>

@@ -5,11 +5,11 @@ export default function Brand() {
     <div className="flex items-center">
       <Image
         src="/pig.only.png"
-        alt="Mijnpensioengevuld"
-        width={300}
-        height={90}
-        className="h-20 w-auto object-contain"
+        alt="MijnPensioenGevuld"
+        width={240}
+        height={64}
         priority
+        className="h-18 w-auto"   // zelfde hoogte als “Start scan”
       />
     </div>
   );

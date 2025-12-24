@@ -1,5 +1,5 @@
 "use client";
-
+import Footer from "../../components/Footer";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -392,7 +392,7 @@ export default function ScanPage() {
                     (submitting ? "cursor-not-allowed opacity-60" : "")
                   }
                 >
-                  {submitting ? "Verzenden..." : "Resultaat ontvangen & vrijblijvend gesprek"}
+                 {submitting ? "Verzenden..." : "Aanvragen"}
                 </button>
 
                 <Link
