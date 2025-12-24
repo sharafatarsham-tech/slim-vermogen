@@ -1,8 +1,10 @@
+// app/(site)/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Feature from "../components/Feature";
 import Faq from "../components/Faq";
+import ProblemSection from "../components/ProblemSection";
 
 export default function HomePage() {
   return (
@@ -99,6 +101,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* PROBLEM */}
+        <ProblemSection />
 
         {/* HOW IT WORKS */}
         <section id="hoe-werkt-het" className="border-t border-zinc-200 bg-white">
